@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brandon — Data & Analytics Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface2: #161616;
+  --border: #222222;
+  --border-bright: #333333;
+  --text: #e8e4dc;
+  --text-muted: #666666;
+  --text-dim: #444444;
+  --deliver: #4a9eff;
+  --diagnose: #f0a500;
+  --fix: #3ecf6e;
+  --accent: #e8e4dc;
+  --red: #e05252;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Crimson Pro', serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(20px);
+}
+
+.nav-id {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.nav-id span { color: var(--text); }
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 120px 60px 80px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* grid background */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-left {}
+
+.hero-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.1s;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--text-dim);
+}
+
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 12vw, 160px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 0;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero-right {
+  padding-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-statement {
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.5;
+  font-weight: 300;
+  color: #aaa49a;
+  margin-bottom: 40px;
+  border-left: 2px solid var(--border-bright);
+  padding-left: 24px;
+}
+
+.hero-statement strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.hero-statement em {
+  font-style: italic;
+  color: var(--text);
+}
+
+/* three pill badges */
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-deliver { color: var(--deliver); border-color: rgba(74,158,255,0.3); background: rgba(74,158,255,0.05); }
+.badge-diagnose { color: var(--diagnose); border-color: rgba(240,165,0,0.3); background: rgba(240,165,0,0.05); }
+.badge-fix { color: var(--fix); border-color: rgba(62,207,110,0.3); background: rgba(62,207,110,0.05); }
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.badge-deliver .badge-dot { background: var(--deliver); }
+.badge-diagnose .badge-dot { background: var(--diagnose); }
+.badge-fix .badge-dot { background: var(--fix); }
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 13px 24px;
+  text-decoration: none;
+  border: 1px solid;
+  cursor: crosshair;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-light {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+}
+.btn-light:hover { background: transparent; color: var(--text); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border-bright);
+}
+.btn-outline:hover { color: var(--text); border-color: var(--text); }
+
+/* ── HERO BOTTOM BAR ── */
+.hero-bottom {
+  display: flex;
+  gap: 60px;
+  padding-top: 60px;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.9s;
+}
+
+.stat { }
+.stat-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--text);
+}
+.stat-l {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+/* ── THREE PILLARS ── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--border);
+}
+
+.pillar {
+  padding: 80px 60px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.pillar:last-child { border-right: none; }
+.pillar:hover { background: var(--surface); }
+
+.pillar-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 120px;
+  line-height: 1;
+  position: absolute;
+  top: 20px; right: 20px;
+  opacity: 0.04;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.pillar:hover .pillar-num { opacity: 0.08; }
+
+.pillar-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pillar-tag-line {
+  height: 1px;
+  width: 32px;
+}
+
+.pillar-deliver .pillar-tag { color: var(--deliver); }
+.pillar-deliver .pillar-tag-line { background: var(--deliver); }
+.pillar-diagnose .pillar-tag { color: var(--diagnose); }
+.pillar-diagnose .pillar-tag-line { background: var(--diagnose); }
+.pillar-fix .pillar-tag { color: var(--fix); }
+.pillar-fix .pillar-tag-line { background: var(--fix); }
+
+.pillar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.pillar-deliver .pillar-title { color: var(--deliver); }
+.pillar-diagnose .pillar-title { color: var(--diagnose); }
+.pillar-fix .pillar-title { color: var(--fix); }
+
+.pillar-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #888;
+  margin-bottom: 32px;
+}
+
+.pillar-body strong { color: var(--text); font-weight: 600; }
+
+.pillar-examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pillar-ex {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.pillar-ex::before {
+  content: '→';
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pillar-deliver .pillar-ex::before { color: var(--deliver); }
+.pillar-diagnose .pillar-ex::before { color: var(--diagnose); }
+.pillar-fix .pillar-ex::before { color: var(--fix); }
+
+/* ── EVIDENCE ── */
+.evidence {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.section-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-tag::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 72px);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  font-size: 18px;
+  color: #666;
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 60px;
+}
+
+.cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+}
+
+.case {
+  background: var(--surface2);
+  padding: 48px 44px;
+  cursor: crosshair;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.case:hover { background: #1a1a1a; }
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.case-co {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.case-type {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid;
+}
+
+.type-diagnose { color: var(--diagnose); border-color: rgba(240,165,0,0.3); }
+.type-fix { color: var(--fix); border-color: rgba(62,207,110,0.3); }
+.type-all { color: var(--deliver); border-color: rgba(74,158,255,0.3); }
+
+.case-title {
+  font-family: 'Crimson Pro', serif;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.case-asked {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.case-found {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--diagnose);
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.case-summary {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+.case-outcome {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--fix);
+  padding: 10px 16px;
+  border-left: 2px solid var(--fix);
+  background: rgba(62,207,110,0.04);
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.case-toggle {
+  margin-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  border: none;
+  background: none;
+  cursor: crosshair;
+  padding: 0;
+}
+
+.case:hover .case-toggle { color: var(--text); }
+
+.case-detail {
+  display: none;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+  line-height: 1.8;
+  color: #888;
+  animation: fadeUp 0.3s ease;
+}
+
+.case-detail.open { display: block; }
+
+/* ── MATRIX ── */
+.matrix-section {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+}
+
+.matrix-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 60px;
+  align-items: end;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matrix-table thead tr {
+  border-bottom: 1px solid var(--border-bright);
+}
+
+.matrix-table th {
+  padding: 14px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.matrix-table th:first-child { text-align: left; }
+
+.matrix-table th.me {
+  color: var(--text);
+  border-bottom: 2px solid var(--text);
+}
+
+.matrix-table td {
+  padding: 14px 20px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-dim);
+  transition: background 0.15s;
+}
+
+.matrix-table td:first-child {
+  text-align: left;
+  font-family: 'Crimson Pro', serif;
+  font-size: 17px;
+  color: #aaa;
+}
+
+.matrix-table td.me {
+  color: var(--text);
+  font-weight: 600;
+  border-left: 1px solid var(--border-bright);
+  border-right: 1px solid var(--border-bright);
+}
+
+.matrix-table tbody tr:hover td { background: var(--surface); }
+.matrix-table tbody tr:last-child td.me { border-bottom: 2px solid var(--text); }
+
+.chk { color: #555; font-size: 16px; }
+.chk-part { color: #383838; font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.chk-no { color: #222; }
+.chk-star { font-size: 16px; }
+.chk-blue { color: var(--deliver); }
+.chk-gold { color: var(--diagnose); }
+.chk-green { color: var(--fix); }
+
+.matrix-note {
+  margin-top: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.note-item { display: flex; align-items: center; gap: 8px; }
+
+/* ── BOOK ── */
+.book-section {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.book-obj {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.book-visual {
+  width: 180px;
+  height: 260px;
+  background: var(--surface2);
+  border: 1px solid var(--border-bright);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 22px;
+  position: relative;
+  box-shadow: 8px 8px 0 0 var(--diagnose);
+}
+
+.book-visual::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--deliver), var(--diagnose), var(--fix));
+}
+
+.book-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.book-t {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--text);
+  letter-spacing: 0.03em;
+}
+
+.book-st {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  color: var(--diagnose);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.book-by {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+}
+
+.book-copy .section-sub { color: #666; margin-bottom: 32px; }
+
+/* ── CONTACT ── */
+.contact-section {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.contact-line:hover {
+  border-color: var(--border-bright);
+  background: var(--surface);
+}
+
+.contact-line-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.contact-line-val {
+  font-size: 17px;
+  color: var(--text);
+}
+
+.contact-line-arrow {
+  margin-left: auto;
+  color: var(--text-dim);
+  font-size: 18px;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.contact-line:hover .contact-line-arrow {
+  transform: translateX(4px);
+  color: var(--text);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 24px 60px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer p {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-bottom { gap: 30px; flex-wrap: wrap; }
+  .pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--border); padding: 60px 24px; }
+  .evidence { padding: 70px 24px; }
+  .cases { grid-template-columns: 1fr; }
+  .matrix-section { padding: 70px 24px; }
+  .matrix-intro { grid-template-columns: 1fr; gap: 32px; }
+  .book-section { grid-template-columns: 1fr; padding: 70px 24px; }
+  .contact-section { grid-template-columns: 1fr; padding: 70px 24px; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-id"><span>Brandon</span> — Analytics & Data</div>
+  <ul class="nav-links">
+    <li><a href="#pillars">What I Do</a></li>
+    <li><a href="#evidence">Case Studies</a></li>
+    <li><a href="#matrix">Capabilities</a></li>
+    <li><a href="#book">Book</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">Senior Data & Analytics Leader</div>
+      <div class="hero-name">Brandon</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-statement">
+        I <strong>deliver</strong> what you hired me for.<br>
+        I <em>diagnose</em> what you didn't know was broken.<br>
+        And if you want it fixed — <strong>I can do that too.</strong>
+      </p>
+      <div class="hero-badges">
+        <div class="badge badge-deliver"><div class="badge-dot"></div>Deliver</div>
+        <div class="badge badge-diagnose"><div class="badge-dot"></div>Diagnose</div>
+        <div class="badge badge-fix"><div class="badge-dot"></div>Fix</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#evidence" class="btn btn-light">See the Evidence</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="stat">
+      <div class="stat-n">25</div>
+      <div class="stat-l">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">6</div>
+      <div class="stat-l">Major Companies</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">Amazon</div>
+      <div class="stat-l">eBay · Upwork · VMware · GameStop</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">5</div>
+      <div class="stat-l">Disciplines Spanned</div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE PILLARS -->
+<div id="pillars" class="pillars">
+
+  <div class="pillar pillar-deliver reveal">
+    <div class="pillar-num">01</div>
+    <div class="pillar-tag"><div class="pillar-tag-line"></div>The baseline</div>
+    <div class="pillar-title">Deliver</div>
+    <p class="pillar-body">
+      Whatever the role requires — <strong>pipelines, models, dashboards, analyses, frameworks</strong> — I build it, ship it, and own it. Not waiting to be told twice. Not delegating the hard parts.
+    </p>
+    <div class="pillar-examples">
+      <div class="pillar-ex">SQL, Python, dbt, Spark, Kafka, Airflow</div>
+      <div class="pillar-ex">Data models built for how the business actually works</div>
+      <div class="pillar-ex">Reporting that tells the truth, not a story</div>
+      <div class="pillar-ex">Self-service analytics that actually self-serves</div>
+    </div>
+  </div>
+
+  <div class="pillar pillar-diagnose reveal">
+    <div class="pillar-num">02</div>
+    <div class="pillar-tag"><div class="pillar-tag-line"></div>The differentiator</div>
+    <div class="pillar-title">Diagnose</div>
+    <p class="pillar-body">
+      While doing the work, I see things. <strong>Metrics measuring the wrong population. Dashboards that create false confidence. Root causes nobody looked for.</strong> I surface them — clearly, with evidence, without politics.
+    </p>
+    <div class="pillar-examples">
+      <div class="pillar-ex">Why your self-service analytics isn't working</div>
+      <div class="pillar-ex">Why you have multiple sources of truth</div>
+      <div class="pillar-ex">Which metrics are lying to leadership</div>
+      <div class="pillar-ex">Where the measurement system breaks down</div>
+    </div>
+  </div>
+
+  <div class="pillar pillar-fix reveal">
+    <div class="pillar-num">03</div>
+    <div class="pillar-tag"><div class="pillar-tag-line"></div>The rare part</div>
+    <div class="pillar-title">Fix</div>
+    <p class="pillar-body">
+      Most people who find problems hand them off. I bring the finding, propose the solution, and <strong>if you decide it's worth fixing — I'm the one who fixes it.</strong> Concept through execution, no handoff required.
+    </p>
+    <div class="pillar-examples">
+      <div class="pillar-ex">Fraud detection nobody asked for — built anyway</div>
+      <div class="pillar-ex">Rebuilt WBR frameworks from scratch</div>
+      <div class="pillar-ex">Surfaced overbilled customers, remediation triggered</div>
+      <div class="pillar-ex">New measurement systems that couldn't be gamed</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- EVIDENCE -->
+<section id="evidence" class="evidence">
+  <div class="section-tag">Case Studies</div>
+  <h2 class="section-title reveal">The Work.</h2>
+  <p class="section-sub reveal">Each started as a routine assignment. None of them ended there.</p>
+
+  <div class="cases">
+
+    <div class="case reveal">
+      <div class="case-header">
+        <div class="case-co">eBay</div>
+        <div class="case-type type-diagnose">Diagnose + Fix</div>
+      </div>
+      <h3 class="case-title">The Customers Nobody Was Counting</h3>
+      <div class="case-asked">Asked for → Complaint volume analysis</div>
+      <div class="case-found">Found → A population of silently overbilled customers invisible to every existing metric</div>
+      <p class="case-summary">The dashboard was measuring customers who complained. Nobody asked about the ones who didn't — and were still being charged incorrectly.</p>
+      <div class="case-outcome">Triggered a remediation program for a customer population that wasn't in any report</div>
+      <button class="case-toggle" onclick="toggleCase(this)">Read the full story <span>↓</span></button>
+      <div class="case-detail">
+        The ask was simple: how many complaints are we getting? Answerable in an afternoon. But while building the analysis I noticed something structurally missing — the metric was counting inbound contacts, not harm done. Customers who were overbilled but never contacted support weren't complaining. They were quietly leaving, or quietly staying and continuing to be charged. I redirected the work, built a method to identify the silent population, quantified the actual affected cohort, and brought it forward. It wasn't in my job description. It wasn't what they asked for. But once you see it, you can't unsee it.
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-header">
+        <div class="case-co">eBay</div>
+        <div class="case-type type-all">Deliver + Diagnose + Fix</div>
+      </div>
+      <h3 class="case-title">Shipping Label Fraud — Before Anyone Asked</h3>
+      <div class="case-asked">Asked for → Routine shipping data analysis</div>
+      <div class="case-found">Found → A coordinated fraud ring operating at scale inside the platform</div>
+      <p class="case-summary">A pattern in the data didn't match any legitimate commerce behavior. Nobody had flagged it. Nobody was looking for it.</p>
+      <div class="case-outcome">Multi-million dollar fraud ring surfaced. Federal law enforcement involvement.</div>
+      <button class="case-toggle" onclick="toggleCase(this)">Read the full story <span>↓</span></button>
+      <div class="case-detail">
+        Standard shipping analysis. I was looking at label generation patterns when I noticed a cluster of accounts with weight distributions too consistent to be real commerce. The regularity was the tell — legitimate sellers have variance. These didn't. I built a detection model on nights and weekends, not because it was assigned, but because the pattern was too clear to ignore. What started as a data curiosity became a formal investigation with FBI involvement. I found the thing by doing the work, not by being asked to look for it.
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-header">
+        <div class="case-co">Upwork</div>
+        <div class="case-type type-diagnose">Diagnose + Fix</div>
+      </div>
+      <h3 class="case-title">19 Weasel Words on One Slide</h3>
+      <div class="case-asked">Asked for → Weekly business review support</div>
+      <div class="case-found">Found → A measurement system structurally designed to avoid accountability</div>
+      <p class="case-summary">The WBR was full of language that sounded like progress without committing to any measurement. I counted the phrases. Then I rebuilt the system.</p>
+      <div class="case-outcome">WBR redesigned around actuals vs. targets — language that couldn't obscure the numbers</div>
+      <button class="case-toggle" onclick="toggleCase(this)">Read the full story <span>↓</span></button>
+      <div class="case-detail">
+        I audited a sample of WBR slides and catalogued what I started calling weasel words — "trending in the right direction," "we believe," "early signals suggest," "momentum is building." Nineteen instances on one slide. Every phrase allowed a presenter to claim progress without committing to a measurement that could prove them wrong. The language wasn't the problem. It was a symptom of a system that didn't require truth-telling. I documented the pattern with evidence, made the case to leadership, and rebuilt the reporting framework so slides showed actuals vs. targets, not narratives.
+      </div>
+    </div>
+
+    <div class="case reveal">
+      <div class="case-header">
+        <div class="case-co">Amazon</div>
+        <div class="case-type type-all">Deliver + Diagnose + Fix</div>
+      </div>
+      <h3 class="case-title">The Gen Z Lens Nobody Had Built</h3>
+      <div class="case-asked">Asked for → Standard behavioral reporting</div>
+      <div class="case-found">Found → A generational shift in platform engagement that existing metrics were structurally blind to</div>
+      <p class="case-summary">The WBR tracked categories and transactions. It wasn't built to see how a generation was engaging differently — and the difference mattered.</p>
+      <div class="case-outcome">New cohort-based tracking framework became a standing leadership artifact</div>
+      <button class="case-toggle" onclick="toggleCase(this)">Read the full story <span>↓</span></button>
+      <div class="case-detail">
+        The existing reporting was accurate. It was also blind to a cohort-level behavioral shift that would only become a strategic problem once it was too late to address. I proposed a generational lens — a structured way to track how Gen Z was engaging with the platform differently from older segments — not because it was assigned, but because the gap was obvious once you looked at the data without the legacy framing. What started as a one-off proposal became a recurring leadership review. The metric existed. The framing to make it meaningful didn't.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATRIX -->
+<section id="matrix" class="matrix-section">
+  <div class="matrix-intro">
+    <div>
+      <div class="section-tag">Capabilities</div>
+      <h2 class="section-title reveal">One column<br>lights up<br>differently.</h2>
+    </div>
+    <p class="section-sub reveal" style="margin-bottom:0; align-self: end;">This isn't about being a generalist. It's about being the person who can see across the seams — where the handoffs break, where the assumptions go unchecked, where the measurement system diverges from reality.</p>
+  </div>
+
+  <div class="reveal">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>Data Analyst</th>
+          <th>Data Engineer</th>
+          <th>Analytics Eng.</th>
+          <th>Product Mgr</th>
+          <th class="me">Brandon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>SQL & Data Modeling</td>
+          <td><span class="chk">✓</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk">✓</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td class="me"><span class="chk-star chk-blue">✦</span></td>
+        </tr>
+        <tr>
+          <td>Pipeline & Streaming Architecture</td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">✓</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td class="me"><span class="chk">✓</span></td>
+        </tr>
+        <tr>
+          <td>Business Problem Diagnosis</td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">✓</span></td>
+          <td class="me"><span class="chk-star chk-gold">✦</span></td>
+        </tr>
+        <tr>
+          <td>Fraud & Anomaly Detection</td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td class="me"><span class="chk-star chk-gold">✦</span></td>
+        </tr>
+        <tr>
+          <td>Measurement System Design</td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td class="me"><span class="chk-star chk-gold">✦</span></td>
+        </tr>
+        <tr>
+          <td>Root Cause Surfacing</td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td class="me"><span class="chk-star chk-gold">✦</span></td>
+        </tr>
+        <tr>
+          <td>End-to-End Execution (solo)</td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td class="me"><span class="chk-star chk-green">✦</span></td>
+        </tr>
+        <tr>
+          <td>Stakeholder Communication</td>
+          <td><span class="chk-part">partial</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk-no">—</span></td>
+          <td><span class="chk">✓</span></td>
+          <td class="me"><span class="chk-star chk-green">✦</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="matrix-note">
+      <div class="note-item"><span class="chk-star chk-blue">✦</span> Differentiating strength</div>
+      <div class="note-item"><span class="chk" style="color:#555">✓</span> Solid capability</div>
+      <div class="note-item"><span class="chk-part">partial</span> Foundational only</div>
+      <div class="note-item"><span class="chk-no">—</span> Not typical for role</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section id="book" class="book-section reveal">
+  <div class="book-obj">
+    <div class="book-visual">
+      <div class="book-label">Forthcoming</div>
+      <div>
+        <div class="book-t">Mechanisms Over Intent</div>
+        <div class="book-st">Why Smart Organizations Stay Broken — and What to Install to Fix Them</div>
+      </div>
+      <div class="book-by">Brandon</div>
+    </div>
+  </div>
+
+  <div class="book-copy">
+    <div class="section-tag">The Book</div>
+    <h2 class="section-title">The thesis behind<br>25 years of work.</h2>
+    <p class="section-sub">Organizations don't fail because people stop caring. They fail because they never installed the mechanisms that make truth-telling, accurate measurement, and accountable execution the default — not the exception. This book is the diagnosis and the blueprint.</p>
+    <a href="#contact" class="btn btn-light">Get Notified on Launch</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div>
+    <div class="section-tag">Let's Talk</div>
+    <h2 class="section-title reveal">You might have<br>a problem I've<br>seen before.</h2>
+    <p class="section-sub reveal" style="margin-bottom:0">If you're building a data function, questioning your measurement infrastructure, or looking for someone who delivers and then keeps looking — reach out.</p>
+  </div>
+
+  <div class="contact-right reveal">
+    <a href="https://linkedin.com" class="contact-line" target="_blank">
+      <div class="contact-line-label">LinkedIn</div>
+      <div class="contact-line-val">linkedin.com/in/brandon</div>
+      <div class="contact-line-arrow">→</div>
+    </a>
+    <a href="mailto:brandon@email.com" class="contact-line">
+      <div class="contact-line-label">Email</div>
+      <div class="contact-line-val">brandon@email.com</div>
+      <div class="contact-line-arrow">→</div>
+    </a>
+    <a href="https://github.com" class="contact-line" target="_blank">
+      <div class="contact-line-label">GitHub</div>
+      <div class="contact-line-val">RoboFleet & other work</div>
+      <div class="contact-line-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Brandon — Data & Analytics Leader</p>
+  <p>Deliver. Diagnose. Fix.</p>
+</footer>
+
+<script>
+  // case toggles
+  function toggleCase(btn) {
+    const detail = btn.nextElementSibling;
+    const arrow = btn.querySelector('span');
+    detail.classList.toggle('open');
+    arrow.textContent = detail.classList.contains('open') ? '↑' : '↓';
+  }
+
+  // scroll reveals
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => ro.observe(r));
+</script>
+</body>
+</html>
