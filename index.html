@@ -64,6 +64,47 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--ink); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--ink);
+    }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0; right: 0;
+      background: rgba(253,252,250,0.98);
+      border-bottom: 1px solid var(--rule);
+      padding: 24px 32px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+    }
 
     .block { padding: 96px 48px; }
     .block-cream { background: var(--cream); }
@@ -437,7 +478,18 @@
       <li><a href="#thinking">Thinking</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="nav-mobile" id="mobileNav">
+    <a href="#capabilities" onclick="closeMobileNav()">Capabilities</a>
+    <a href="#work" onclick="closeMobileNav()">Scope of Work</a>
+    <a href="#results" onclick="closeMobileNav()">Results</a>
+    <a href="#background" onclick="closeMobileNav()">Background</a>
+    <a href="#thinking" onclick="closeMobileNav()">Thinking</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  </div>
 
   <!-- HERO -->
   <div class="block block-white">
@@ -502,375 +554,4 @@
           <div>
             <div class="diff-col-label">Unique Background</div>
             <p class="diff-col-body">Software QA and release engineering, analytics engineering, product management, project management, people leadership, and Six Sigma process improvement.<br><br>Grounded by an MBA and undergraduate degree in Management Information Systems.<br><br>Technical depth combined with business fluency, all in one career.</p>
-            <button class="expand-btn" style="margin-top:24px;margin-bottom:8px;color:var(--accent-light);border-bottom:1px solid rgba(196,164,74,0.4);padding-bottom:10px;display:flex;width:100%;justify-content:flex-end;" onclick="toggleExpand(this)"><span>Why this matters</span><span class="expand-arrow" style="color:var(--accent-light);">›</span></button>
-            <div class="expand-content">
-              <div class="expand-inner" style="border-top-color:rgba(253,252,250,0.15);">
-                <p style="color:rgba(253,252,250,0.65);">Great analytics organizations require more than analytical skill. They require engineering discipline, process rigor, product thinking, and business judgment. These things are not taught in analytics. They are learned in other roles, through other experiences, and then brought to bear on the data function.</p>
-                <p style="color:rgba(253,252,250,0.65);">Engineering discipline comes from building and shipping software and living with the consequences of cutting corners. Process rigor comes from Six Sigma and release management, where a broken process has immediate, measurable consequences. Product thinking comes from owning a product and being accountable to whether people actually use what you built. Business judgment comes from having a business degree and spending years in rooms where financial decisions are made. When all of these are combined in one career and applied to an analytics organization, the result is a function built to a different standard than one assembled from analytics experience alone.</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="diff-col-label">Technical Depth</div>
-            <p class="diff-col-body">Focused on improving organizations, quality, and efficiency through custom tech solutions.<br><br>From writing C# applications to developing dashboard applications before Tableau existed, architecting DRY and testable data pipelines before dbt existed, and building end-to-end data platforms like RoboFleet from the ground up.<br><br>Still writes production code today.</p>
-            <button class="expand-btn" style="margin-top:24px;margin-bottom:8px;color:var(--accent-light);border-bottom:1px solid rgba(196,164,74,0.4);padding-bottom:10px;display:flex;width:100%;justify-content:flex-end;" onclick="toggleExpand(this)"><span>Why this matters</span><span class="expand-arrow" style="color:var(--accent-light);">›</span></button>
-            <div class="expand-content">
-              <div class="expand-inner" style="border-top-color:rgba(253,252,250,0.15);">
-                <p style="color:rgba(253,252,250,0.65);">A leader who can still do the work produces better outcomes at every level. They make better architectural decisions because they understand the tradeoffs firsthand. They earn credibility with technical teams that pure managers never achieve. They can distinguish between a real technical constraint and an excuse. They can review a proposed solution and know whether it will create technical debt three years from now.</p>
-                <p style="color:rgba(253,252,250,0.65);">Technical depth also changes how you lead AI initiatives. Leaders without it tend to mandate adoption without understanding cost structures, token economics, or the brittle systems being created by ungoverned automation. Technical depth is what separates an AI strategy that delivers from one that accumulates expensive problems no one anticipated.</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="diff-col-label">Extraordinary Lengths</div>
-            <p class="diff-col-body">Needed to hunt down fraudulent sellers and design ML models. But building a great model requires truly understanding the platform and the customer. So every weekend for six months, sourced items at garage sales and sold $50,000 worth of product on eBay to learn the platform from the inside. That led to new solutions that recovered over $20M per year in fraud losses.<br><br>At GameStop, when clearance pricing changes failed to meaningfully move $200M in excess inventory, the data was correct but something was wrong with the business. Drove to three stores after work and inspected their entire operations. Found multiple critical execution failures that prevented over $100M in unnecessary margin loss.</p>
-            <button class="expand-btn" style="margin-top:24px;margin-bottom:8px;color:var(--accent-light);border-bottom:1px solid rgba(196,164,74,0.4);padding-bottom:10px;display:flex;width:100%;justify-content:flex-end;" onclick="toggleExpand(this)"><span>Why this matters</span><span class="expand-arrow" style="color:var(--accent-light);">›</span></button>
-            <div class="expand-content">
-              <div class="expand-inner" style="border-top-color:rgba(253,252,250,0.15);">
-                <p style="color:rgba(253,252,250,0.65);">The difference between an analyst who builds reports and a leader who drives business outcomes is almost always about depth of business understanding, not sophistication of tools. Dashboards built without that depth answer the questions that were asked. They rarely surface the questions that should have been asked.</p>
-                <p style="color:rgba(253,252,250,0.65);">Going to extraordinary lengths to understand a business, whether that means becoming a seller on the platform, auditing store operations in person, or mapping a process end-to-end before building a single metric, is what produces insights that change decisions rather than confirm assumptions. It is also what prevents expensive mistakes. At GameStop, understanding the operational reality before acting on the data saved over $100M in margin that would have been discounted away chasing a problem that did not exist.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WORK -->
-  <div class="block block-cream" id="work">
-    <div class="inner">
-
-      <!-- HIRED TO DO -->
-      <div class="section-header reveal">
-        <span class="section-label">Scope of Leadership</span>
-        <h2>Representative work at the expected caliber of this level.</h2>
-      </div>
-      <div class="highlights-grid reveal" style="margin-bottom:80px;">
-        <div class="highlight-item">
-          <div class="highlight-co">Amazon</div>
-          <div class="highlight-title">WBR Infrastructure Across Amazon Prime, Marketing, and Gen Z Programs</div>
-          <div class="highlight-desc">Built weekly business review reporting infrastructure across Amazon Prime, Amazon Deals, Amazon Collections, Amazon Events, Prime Student, and Prime Young Adult, North America Marketing programs, and a cross-company Gen Z metrics initiative. Reviewed at the Jeff Bezos level.</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-co">Amazon</div>
-          <div class="highlight-title">AI-Ready Data Infrastructure and Feature Engineering</div>
-          <div class="highlight-desc">Designed and structured data assets and feature engineering frameworks for machine learning teams. Built the clean, well-documented data foundations that make AI and ML initiatives actually deliver rather than require expensive rework.</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-co">eBay</div>
-          <div class="highlight-title">Global Collections Analytics Re-architecture</div>
-          <div class="highlight-desc">Complete migration of global collections analytics from SAS to SQL/Python on Teradata. CI/CD, anomaly detection, data quality frameworks, and SEC-reportable financial output. The kind of documented, governed data environment that AI initiatives require.</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-co">GameStop</div>
-          <div class="highlight-title">Analytics Transformation and Maturity Development</div>
-          <div class="highlight-desc">Built an analytics function from near-zero maturity at a decades-old retailer. Process-mapped pricing, clearance, refurbishment center operations, and logistics to establish measurement frameworks where none existed. Laid the data quality and governance foundations that become prerequisites for AI adoption.</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-co">Upwork</div>
-          <div class="highlight-title">Analytics Operating Model, 35-Person Organization</div>
-          <div class="highlight-desc">Led analytics organization spanning data analytics, customer insights, and operational research. Drove Amazon-style measurement rigor, written communication standards, and the self-service infrastructure that reduces dependence on ad hoc requests.</div>
-        </div>
-        <div class="highlight-item">
-          <div class="highlight-co">Throughout Career</div>
-          <div class="highlight-title">Laying the Foundations for AI Before AI Was the Mandate</div>
-          <div class="highlight-desc">Clean pipelines, documented schemas, semantic layers, anomaly detection, data contracts, and quality frameworks have been core to every environment built or rebuilt. What organizations now call AI readiness is the standard that has been applied for 20 years.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROVEN RESULTS -->
-  <div class="block block-white" id="results">
-    <div class="inner">
-
-      <!-- ABOVE AND BEYOND -->
-      <div class="section-header reveal">
-        <span class="section-label">Proven Results</span>
-        <h2>The business impact delivered above and beyond the role.</h2>
-      </div>
-
-      <div class="impact-grid reveal">
-        <div class="impact-cell">
-          <div class="impact-number"><sup>$</sup>20M</div>
-          <div class="impact-label">Annual bad debt recovery<br>via fraud detection at eBay</div>
-        </div>
-        <div class="impact-cell">
-          <div class="impact-number"><sup>$</sup>100M<sup>+</sup></div>
-          <div class="impact-label">Margin protected at GameStop<br>by diagnosing the real problem</div>
-        </div>
-        <div class="impact-cell">
-          <div class="impact-number"><sup>$</sup>1M</div>
-          <div class="impact-label">Annual vendor contract<br>replaced through direct execution</div>
-        </div>
-        <div class="impact-cell">
-          <div class="impact-number"><sup>$</sup>1.5M<sup>+</sup></div>
-          <div class="impact-label">Annual value unlocked through<br>platform modernization at eBay</div>
-        </div>
-      </div>
-
-      <div class="story reveal">
-        <div>
-          <div class="story-company">eBay</div>
-          <div class="story-result">$1.5M+</div>
-          <div class="story-result-label">in annual value unlocked through<br>platform modernization</div>
-        </div>
-        <div>
-          <div class="story-title">Modernized a global analytics platform that was producing inaccurate financials.</div>
-          <p class="story-teaser">Inherited a broken analytics environment producing inaccurate financials. Rebuilt it entirely in SQL and Python over two months. The result: $1.5M in contractor savings, recovered team capacity, and self-service data access unlocked for 127 analysts, scientists, and engineers across five teams who had never had reliable data to work with before. Total annual value unlocked estimated at $1.5M+.</p>
-          <button class="expand-btn" onclick="toggleExpand(this)"><span>Full Case Study</span><span class="expand-arrow">›</span></button>
-          <div class="expand-content">
-            <div class="expand-inner">
-              <p>The analytics environment at eBay's Global Collections team was a financial liability. Five contractors stored SAS code across personal machines and random file server directories. No version control, no naming conventions, no pipeline orchestration. Work was tracked via sticky notes and email. A foreign currency exchange rate file central to all global reporting hadn't been updated in seven years, meaning every number converted to USD was wrong.</p>
-              <p>The global data engineering team had no roadmap capacity for a project this size. So the environment was rebuilt from the ground up, on personal time, over two months of evenings. The migration moved everything to SQL and Python on Teradata with a Jenkins VM for orchestration, Python-based QA checks, and anomaly detection that ranked data issues by severity and delivered a daily email summary. Everything went under source control. Schemas were documented. The reporting layer was built to serve SEC-reportable financials.</p>
-              <p>The outcome: $1.5M in annual savings from eliminated contractor spend and operational efficiency. Turnaround time compressed from days to hours, and 127 analysts, scientists, and engineers across five teams (losses, finance analytics, billing, risk, and risk decision science), unblocked from a bottleneck they had worked around for years. At average fully loaded comp of $200K across those teams, even a conservative 5% time recovery represents over $1.2M in annual productivity unlocked. Combined with contractor savings and recovered team capacity, total annual value is estimated at $1.5M+.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="story reveal">
-        <div>
-          <div class="story-company">eBay</div>
-          <div class="story-result">$20M</div>
-          <div class="story-result-label">annual fraud recovery<br>via 95% accurate models</div>
-        </div>
-        <div>
-          <div class="story-title">To model fraud on a platform, spent six months as a seller to understand it from the inside.</div>
-          <p class="story-teaser">To build accurate fraud models, became an eBay seller. Sourced inventory from garage sales and estate sales every weekend for six months, selling roughly $50,000 in product over the course of a year to learn the platform from the inside. That deep operational knowledge informed models that reached 95% accuracy and a dual-track recovery approach that had never existed at eBay before.</p>
-          <button class="expand-btn" onclick="toggleExpand(this)"><span>Full Case Study</span><span class="expand-arrow">›</span></button>
-          <div class="expand-content">
-            <div class="expand-inner">
-              <p>Effective fraud modeling requires understanding the platform from the seller's perspective, including all the edge cases a bad actor would exploit. The only way to get that understanding was firsthand. Every weekend for six months, garage sales and estate sales across Austin. Roughly $50,000 in goods sold on eBay over the course of a year. Not to make money. Field research.</p>
-              <p>That knowledge informed the feature engineering. The resulting models reached 95% accuracy. But at eBay's scale, 95% still meant meaningful false positives, and a false positive in collections means contacting a legitimate seller about money they don't owe. A dual-track approach was designed: high-confidence fraud cases actioned directly, gray-zone cases handled through a separate mechanism that protected revenue while still recovering fraudulent amounts. A solution that hadn't existed at eBay before.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="story reveal">
-        <div>
-          <div class="story-company">GameStop</div>
-          <div class="story-result">$100M<sup style="font-size:0.55em">+</sup></div>
-          <div class="story-result-label">in margin protected by<br>diagnosing the real problem</div>
-        </div>
-        <div>
-          <div class="story-title">Put on a general manager hat and conducted field operations audits when the data said something was wrong but the numbers couldn't tell me why.</div>
-          <p class="story-teaser">When clearance pricing changes failed to move $200M in excess inventory, the data was correct but something in the business was broken. Rather than recommend deeper discounts as the COO suggested, drove to three stores after work and inspected their entire operations firsthand. Found multiple critical execution failures that had nothing to do with price. Coordinating the operational fix protected over $100M in margin.</p>
-          <button class="expand-btn" onclick="toggleExpand(this)"><span>Full Case Study</span><span class="expand-arrow">›</span></button>
-          <div class="expand-content">
-            <div class="expand-inner">
-              <p>GameStop had no per-unit productivity metrics. Before any clearance analysis could begin, the measurement framework had to be built from scratch: unit economics, sell-through forecasts, inventory aging by category. Once the framework was in place, the clearance recommendation was modeled and executed at 20-40% discounts. Sales increased 2x. The expected result was closer to 5-10x.</p>
-              <p>Rather than follow the COO's direction to discount deeper, time was taken to understand what was actually happening. Three GameStop locations were audited after hours. What was found: missing clearance signage on exterior windows and display racks, inventory in back rooms that should have been on the floor, items price-labeled for clearance but never physically moved, items that should have been relabeled but weren't due to insufficient associate hours, and stores without label stock to print on.</p>
-              <p>The product wasn't moving because no one knew it was on sale. Discounting to 99% off would have changed nothing. Operational execution fixes were coordinated across VP of Operations and VP of Marketing. Over $100M in margin was protected that would otherwise have been given away chasing a problem that wasn't a pricing problem.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="story reveal">
-        <div>
-          <div class="story-company">eBay</div>
-          <div class="story-result">$1M</div>
-          <div class="story-result-label">annual vendor contract<br>replaced through direct execution</div>
-        </div>
-        <div>
-          <div class="story-title">Put on a software engineering hat to save the company $1M a year in licensing by building the solution myself.</div>
-          <p class="story-teaser">Leadership was evaluating a vendor solution quoted at approximately $1M per year to manage collections workflow for high-value past-due accounts. The process was running on Excel with a daily hour-long meeting of five senior leaders to get through it. As an analytics leader, not a software developer, built a full Ruby on Rails application in a week that did more than the vendor would have. The meeting was eliminated. $1M+ annual licensing avoided.</p>
-          <button class="expand-btn" onclick="toggleExpand(this)"><span>Full Case Study</span><span class="expand-arrow">›</span></button>
-          <div class="expand-content">
-            <div class="expand-inner">
-              <p>eBay billed roughly 7 million sellers a month. A percentage went past due on invoices and required personal outreach. The management process was an Excel spreadsheet: call notes in cells, manual column filtering to estimate payment likelihood, manual roll rate forecasting. It required a daily one-hour meeting with five senior people to execute.</p>
-              <p>A Ruby on Rails application was built to replace it. The application listed all past-due sellers with full invoice breakdowns, drill-down views showing complete payment history, call center note logging by billing cycle, commitment date tracking, and automatic follow-up flags when payment commitments passed without receipt. Everything rolled up into forecasted roll rates by country and globally, visible to the entire team in real time.</p>
-              <p>The daily meeting was eliminated. Two to three headcount of manual work disappeared. The senior director disclosed afterward that vendor software to solve this problem had been quoted at approximately $1M per year. A follow-up request to build something similar for the billing department was declined: the right fix was upstream, not a downstream patch that would create unmaintainable technical debt.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- BACKGROUND -->
-  <div class="block block-cream" id="background">
-    <div class="inner">
-      <div class="section-header reveal">
-        <span class="section-label">Background</span>
-        <h2>Enterprise scale and startup velocity. Large organizations and lean teams.</h2>
-      </div>
-      <div class="breadth-grid">
-        <div class="reveal">
-          <div class="breadth-group-label">Business Domains</div>
-          <ul class="breadth-items">
-            <li>Product and Membership</li>
-            <li>Risk and Fraud Detection</li>
-            <li>Finance and Billing</li>
-            <li>Payments and Collections</li>
-            <li>Operations and Logistics</li>
-            <li>Sales and Revenue</li>
-            <li>Customer Insights</li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <div class="breadth-group-label">Technical Disciplines</div>
-          <ul class="breadth-items">
-            <li>Analytics and Data Engineering</li>
-            <li>AI and LLM Data Infrastructure</li>
-            <li>Real-Time Streaming (Kafka, Flink)</li>
-            <li>Feature Engineering and ML Support</li>
-            <li>Business Intelligence and Self-Service</li>
-            <li>Data Governance and Quality</li>
-            <li>Software QA and Release Engineering</li>
-          </ul>
-        </div>
-        <div class="reveal">
-          <div class="breadth-group-label">Leadership Disciplines</div>
-          <ul class="breadth-items">
-            <li>Analytics Transformation</li>
-            <li>Team Building and Talent Development</li>
-            <li>Executive Reporting and WBR</li>
-            <li>Process Improvement and Ops Design</li>
-            <li>Cross-Functional Stakeholder Alignment</li>
-            <li>Six Sigma Process Improvement</li>
-            <li>Program and Project Management</li>
-          </ul>
-        </div>
-      </div>
-
-      <div style="margin-top:64px;">
-        <div class="section-header reveal">
-          <span class="section-label">Career</span>
-          <h2>Where the work was done.</h2>
-        </div>
-        <div class="career-list">
-          <div class="career-item reveal">
-            <div class="career-company">Amazon</div>
-            <div>
-              <div class="career-role">Head of Business Intelligence Engineering, US Prime &amp; North America Marketing</div>
-              <div class="career-detail">Led a team of business intelligence engineers, analysts, and data engineers supporting Amazon Prime and North America Marketing. Built WBR infrastructure reviewed at the Jeff Bezos level. Team embedded across product, operations, and marketing.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">Upwork</div>
-            <div>
-              <div class="career-role">Senior Director, Analytics</div>
-              <div class="career-detail">Led a team of 60 spanning analytics, customer insights, business intelligence engineering, operational research, data science, and pricing science.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">GameStop</div>
-            <div>
-              <div class="career-role">Director of Analytics</div>
-              <div class="career-detail">Led analytics transformation of an organizationally immature function at a decades-old retailer. Built the analytics capability from the ground up across pricing, clearance, refurbishment center operations, and logistics. Process-mapped core business operations to establish measurement frameworks where none existed. The work spanning analytics maturity, organizational development, and operational insight delivery resulted in over $100M in protected margin and a data function built to scale.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">eBay</div>
-            <div>
-              <div class="career-role">Senior Leader, Global Collections Analytics and Data Engineering</div>
-              <div class="career-detail">Led a team of analysts, data engineers, and software developers. Rebuilt global analytics environment. Led fraud modeling and collections analytics serving SEC-reported financials across global markets.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">VMware</div>
-            <div>
-              <div class="career-role">Senior Manager, Analytics and Business Intelligence, Global Cloud Sales</div>
-              <div class="career-detail">Led analytics and business intelligence for global cloud sales at a Fortune 500 infrastructure software company.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">Spiceworks</div>
-            <div>
-              <div class="career-role">Senior Leader, Software QA Engineering, Analytics, and Release Management</div>
-              <div class="career-detail">Led three teams simultaneously spanning software quality assurance engineering, analytics, and software release management. An early example of the cross-functional, player-coach leadership model that has defined the career since.</div>
-            </div>
-          </div>
-          <div class="career-item reveal">
-            <div class="career-company">Earlier Career</div>
-            <div>
-              <div class="career-role">Software QA Engineering, Release Management, Analytics</div>
-              <div class="career-detail">15 years across startups and mid-size companies in software release management, quality assurance engineering, and early analytics leadership.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- THINKING -->
-  <div class="block block-white" id="thinking">
-    <div class="inner">
-      <div class="section-header reveal">
-        <span class="section-label">Perspectives</span>
-        <h2>Practitioner perspectives on what actually works in data organizations.</h2>
-      </div>
-      <div class="tl-grid">
-        <div class="tl-item reveal">
-          <div class="tl-type">Perspective</div>
-          <div class="tl-title">Why most AI transformations will fail, and what to do instead</div>
-          <div class="tl-desc">The organizations treating AI as a mandate rather than a tool are quietly accumulating technical debt and brittle systems. The right question is not what can AI do, but which processes justify automation and at what cost. That analysis has been the foundation of effective data work for 25 years.</div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-type">Book In Progress</div>
-          <div class="tl-title">Why Analytics Organizations Fail to Measure What Actually Matters</div>
-          <div class="tl-desc">A practitioner's examination of the structural and process failures that keep data teams busy and strategically ineffective. Drawing on 25 years across analytics, engineering, and executive leadership.</div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-type">Keynote Speaking</div>
-          <div class="tl-title">The Broken Processes Behind Analytics Dysfunction</div>
-          <div class="tl-desc">Keynote addresses on the root causes of analytics underperformance in enterprise organizations. The problem is almost never the technology and almost always the process and measurement framework underneath it.</div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-type">Technical Project</div>
-          <div class="tl-title">RoboFleet: Real-Time Streaming Data Platform</div>
-          <div class="tl-desc">Designed and built an end-to-end streaming data infrastructure platform: Kafka, Flink, InfluxDB, Airflow, MinIO, and Grafana. Maintained to stay current on modern data engineering tools and architecture patterns.</div>
-        </div>
-        <div class="tl-item reveal">
-          <div class="tl-type">Content and Community</div>
-          <div class="tl-title">Analytics Mentor</div>
-          <div class="tl-desc">Built an analytics training platform generating several hundred thousand dollars in revenue and reaching approximately 90,000 followers. Validated significant market demand for practitioner-led data education.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTACT -->
-  <div class="block block-cream">
-    <section id="contact">
-      <p class="eyebrow">Get In Touch</p>
-      <h2>Open to the <em>right</em> conversation.</h2>
-      <p>Open to senior analytics and data leadership roles as well as hands-on engineering opportunities. Especially interested in companies with hard problems and a culture that values getting things right.</p>
-      <a href="mailto:brandon@brandonsouthern.com" class="contact-link">brandon@brandonsouthern.com</a>
-      <span style="display:inline-block;width:24px;"></span>
-      <a href="https://www.linkedin.com/in/brandonsouthern" class="contact-link" target="_blank">LinkedIn</a>
-    </section>
-  </div>
-
-  <footer>
-    <p>Brandon Southern &copy; 2026</p>
-    <p>Austin, Texas</p>
-  </footer>
-
-  <script>
-    function toggleExpand(btn) {
-      const content = btn.nextElementSibling;
-      const isOpen = content.classList.contains('open');
-      btn.classList.toggle('open', !isOpen);
-      content.classList.toggle('open', !isOpen);
-      btn.querySelector('span:first-child').textContent = isOpen ? 'Full Case Study' : 'Close';
-    }
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    reveals.forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
+            <button class="expand-btn" style="margin-top:24px;margin-bottom:8px
